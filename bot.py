@@ -1358,25 +1358,53 @@ async def on_message(message: discord.Message):
 airdrop_bot = AirdropBot()
 
 async def main():
-    # Setup and start Telegram bot as a task
-    telegram_task = asyncio.create_task(setup_telegram(airdrop_bot))
-    
-    # Start Discord bot in the main loop
-    await discord_bot.start(DISCORD_TOKEN)
+    telegram_task = None
+    try:
+        # Setup and start Telegram bot as a task
+        telegram_task = asyncio.create_task(setup_telegram(airdrop_bot))
+        logger.info("Telegram setup task created")
+    except Exception as e:
+        logger.error(f"Failed to setup Telegram bot: {str(e)}")
 
-    # Wait for Telegram task to complete (it won't, unless there's an error)
-    await telegram_task
+    # Start Discord bot in the main loop
+    try:
+        await discord_bot.start(DISCORD_TOKEN)
+    except Exception as e:
+        logger.error(f"Failed to start Discord bot: {str(e)}")
+        raise
+
+    # Wait for Telegram task to complete (if it was created)
+    if telegram_task:
+        try:
+            await telegram_task
+        except Exception as e:
+            logger.error(f"Telegram task failed: {str(e)}")
 
 if __name__ == "__main__":
     try:
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(main())
+        asyncio.run(main())
     except KeyboardInterrupt:
         logger.info("Bot stopped by user")
+    except Exception as e:
+        logger.error(f"Bot crashed: {str(e)}")
     finally:
+        # Ensure proper shutdown
+        loop = asyncio.get_event_loop()
         if airdrop_bot.telegram_app:
-            loop.run_until_complete(airdrop_bot.telegram_app.stop())
-            loop.run_until_complete(airdrop_bot.telegram_app.shutdown())
-        if discord_bot.is_closed():
-            loop.run_until_complete(discord_bot.close())
+            try:
+                if airdrop_bot.telegram_app.running:
+                    loop.run_until_complete(airdrop_bot.telegram_app.stop())
+                    logger.info("Telegram app stopped")
+                loop.run_until_complete(airdrop_bot.telegram_app.shutdown())
+                logger.info("Telegram app shutdown")
+            except Exception as e:
+                logger.error(f"Error during Telegram shutdown: {str(e)}")
+        if airdrop_bot.discord_bot:
+            try:
+                if discord_bot.is_ready():
+                    loop.run_until_complete(discord_bot.close())
+                    logger.info("Discord bot closed")
+            except Exception as e:
+                logger.error(f"Error closing Discord bot: {str(e)}")
         conn.close()
+        logger.info("Database connection closed")
