@@ -1,0 +1,61 @@
+2025-03-11 23:21:44,239 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 23:21:44,241 - INFO - logging in using static token
+2025-03-11 23:21:45,924 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getMe "HTTP/1.1 200 OK"
+2025-03-11 23:21:45,925 - INFO - Scheduler started
+2025-03-11 23:21:45,925 - INFO - Application started
+2025-03-11 23:21:46,140 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/deleteWebhook "HTTP/1.1 200 OK"
+2025-03-11 23:21:46,774 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:21:47,386 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/sendMessage "HTTP/1.1 200 OK"
+2025-03-11 23:21:47,387 - INFO - User Md Moshfiqur (6251161332) started the bot
+2025-03-11 23:21:47,736 - INFO - Shard ID None has connected to Gateway (Session ID: 62fada1800d58415ba887f8006368b99).
+2025-03-11 23:21:47,913 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/sendMessage "HTTP/1.1 200 OK"
+2025-03-11 23:21:47,913 - INFO - User Md Moshfiqur (6251161332) started the bot
+2025-03-11 23:21:49,756 - INFO - Discord bot logged in as MomoCoinAirdrop#0832
+2025-03-11 23:21:56,774 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:21:59,063 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/sendMessage "HTTP/1.1 200 OK"
+2025-03-11 23:21:59,732 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-03-11 23:22:02,508 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:22:03,639 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/sendMessage "HTTP/1.1 200 OK"
+2025-03-11 23:22:04,381 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-03-11 23:22:28,091 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-03-11 23:22:28,093 - INFO - logging in using static token
+2025-03-11 23:22:30,255 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getMe "HTTP/1.1 200 OK"
+2025-03-11 23:22:30,256 - INFO - Scheduler started
+2025-03-11 23:22:30,256 - INFO - Application started
+2025-03-11 23:22:30,617 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/deleteWebhook "HTTP/1.1 200 OK"
+2025-03-11 23:22:31,623 - INFO - Shard ID None has connected to Gateway (Session ID: 0445bf97396325e6604e4d331b76aa5c).
+2025-03-11 23:22:33,630 - INFO - Discord bot logged in as MomoCoinAirdrop#0832
+2025-03-11 23:22:41,688 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:22:42,102 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:22:43,187 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/sendMessage "HTTP/1.1 200 OK"
+2025-03-11 23:22:43,641 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-03-11 23:22:45,842 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:22:46,537 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/sendMessage "HTTP/1.1 200 OK"
+2025-03-11 23:22:47,041 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-03-11 23:22:49,052 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:22:49,574 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/sendMessage "HTTP/1.1 200 OK"
+2025-03-11 23:22:49,953 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-03-11 23:22:51,787 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:22:51,790 - INFO - Testing message to chat_id: 6251161332, Platform: telegram
+2025-03-11 23:22:52,314 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/sendMessage "HTTP/1.1 200 OK"
+2025-03-11 23:22:52,315 - INFO - Test message sent to 6251161332
+2025-03-11 23:22:52,692 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-03-11 23:22:54,860 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:22:55,407 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/sendMessage "HTTP/1.1 200 OK"
+2025-03-11 23:22:55,819 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-03-11 23:22:58,585 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:22:59,102 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/sendMessage "HTTP/1.1 200 OK"
+2025-03-11 23:22:59,481 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-03-11 23:23:02,712 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:23:03,274 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/sendMessage "HTTP/1.1 200 OK"
+2025-03-11 23:23:03,709 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-03-11 23:23:12,930 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:23:23,148 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:23:33,363 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:23:43,580 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:23:53,796 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:24:04,016 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:24:14,251 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:24:18,380 - INFO - Shard ID None session has been invalidated.
+2025-03-11 23:24:24,468 - INFO - HTTP Request: POST https://api.telegram.org/bot7997864132:AAHxSIlToN2R9GgiBr_V-2Y4ZOR48kwysg0/getUpdates "HTTP/1.1 200 OK"
+2025-03-11 23:24:24,505 - WARNING - Fetching updates got a asyncio.CancelledError. Ignoring as this task may onlybe closed via `Application.stop`.
