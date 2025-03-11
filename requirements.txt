@@ -1,4 +1,5 @@
 python-telegram-bot==20.7
+asyncio==3.4.3 
 discord.py==2.3.2
 web3==6.15.0
 requests==2.31.0
