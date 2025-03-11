@@ -1,11 +1,11 @@
-discord.py==2.5.2          # Latest from your log, compatible
-python-telegram-bot==20.7  # Downgraded to resolve httpx conflict
+discord.py==2.5.2          # Latest stable from log
+python-telegram-bot==20.6  # Downgraded to align httpx with xrpl-py
 web3==6.12.0              # Stable and available
 requests==2.31.0          # Stable and required
-solders==0.19.0           # From your log, assuming 0.21.0 isn’t critical
-xrpl-py==2.2.0            # Pinned to match your log
+solders==0.19.0           # Stable from log
+xrpl-py==2.2.0            # Pinned to match log
 openpyxl==3.1.2           # Stable and required
 python-dotenv==1.0.1      # Stable and required
 ratelimit==2.2.1          # Stable and required
 pytz==2024.1              # Stable and required
-aiohttp==3.11.13          # Updated to match discord.py dependency from log
+aiohttp==3.11.13          # Matches discord.py dependency from log
