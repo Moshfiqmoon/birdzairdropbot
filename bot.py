@@ -1369,14 +1369,14 @@ async def main():
 
 if __name__ == "__main__":
     try:
-        asyncio.run(main())
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(main())
     except KeyboardInterrupt:
         logger.info("Bot stopped by user")
     finally:
-        # Ensure proper shutdown
         if airdrop_bot.telegram_app:
-            asyncio.run(airdrop_bot.telegram_app.stop())
-            asyncio.run(airdrop_bot.telegram_app.shutdown())
-        if airdrop_bot.discord_bot:
-            asyncio.run(discord_bot.close())
+            loop.run_until_complete(airdrop_bot.telegram_app.stop())
+            loop.run_until_complete(airdrop_bot.telegram_app.shutdown())
+        if discord_bot.is_closed():
+            loop.run_until_complete(discord_bot.close())
         conn.close()
