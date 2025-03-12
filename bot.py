@@ -73,7 +73,7 @@ cursor = conn.cursor()
 cursor.executescript('''
     CREATE TABLE IF NOT EXISTS users (
         user_id TEXT PRIMARY KEY, username TEXT, language TEXT, referral_code TEXT, referred_by TEXT,
-        kyc_status TEXT DEFAULT 'pending', agreed_terms INTEGER, momo_balance REAL DEFAULT 0,
+        kyc_status TEXT DEFAULT 'pending', agreed_terms INTEGER, Birdz_balance REAL DEFAULT 0,
         kyc_telegram_link TEXT, kyc_x_link TEXT, kyc_wallet TEXT, kyc_chain TEXT, kyc_submission_time TEXT,
         has_seen_menu INTEGER DEFAULT 0, joined_groups INTEGER DEFAULT 0
     );
@@ -136,7 +136,7 @@ conn.commit()
 # Multi-Language Support
 LANGUAGES = {
     "en": {
-        "welcome": "🌟 Welcome to the Momo Coin Airdrop Bot! 🌟\n\nWe’re thrilled to have you join us on this exciting journey in the world of crypto! 🚀\n\nAs a part of our community, you’re eligible for exclusive airdrop rewards. To get started, simply follow the steps below and secure your spot in the Momo Coin Airdrop. 💰✨\n\n🔑 How to Participate:\n\n- Complete your KYC verification to ensure eligibility.\n- Join our campaign and get ready for rewards.\n- Refer your friends and unlock even more bonuses! 🎁\n\nNeed help? Feel free to reach out to our support team anytime. We’re here to make your experience smooth and rewarding! 💬\n\nLet’s get started and make some Momo Coin magic happen! 🌐\n\nBalance: {balance} Momo Coins\nReferral Link: {ref_link}",
+        "welcome": "🌟 Welcome to the BirdzAirdrop Bot! 🌟\n\nWe’re thrilled to have you join us on this exciting journey in the world of crypto! 🚀\n\nAs a part of our community, you’re eligible for exclusive airdrop rewards. To get started, simply follow the steps below and secure your spot in the Birdz Coin Airdrop. 💰✨\n\n🔑 How to Participate:\n\n- Complete your KYC verification to ensure eligibility.\n- Join our campaign and get ready for rewards.\n- Refer your friends and unlock even more bonuses! 🎁\n\nNeed help? Feel free to reach out to our support team anytime. We’re here to make your experience smooth and rewarding! 💬\n\nLet’s get started and make some Birdz Coin magic happen! 🌐\n\nBalance: {balance} Birdz Coins\nReferral Link: {ref_link}",
         "mandatory_rules": "📢 Mandatory Airdrop Rules:\n\n🔹 Join @successcrypto2\n🔹 Join @successcryptoboss\n\nMust Complete All Tasks & Click On [Continue] To Proceed",
         "confirm_groups": "Please confirm you have joined both groups by clicking below:",
         "menu": "Choose an action:",
@@ -151,23 +151,23 @@ LANGUAGES = {
         "admin_only": "Admin only.",
         "sent_tokens": "Sent {amount} tokens to {wallet} (Tx: {tx_hash})",
         "failed_tokens": "Failed to send {amount} tokens to {wallet}: {error}",
-        "referral_bonus": "🎉 Congratulations! Your referral for {referee} has been approved! You’ve earned a {bonus} Momo Coin bonus!",
+        "referral_bonus": "🎉 Congratulations! Your referral for {referee} has been approved! You’ve earned a {bonus} Birdz Coin bonus!",
         "referral_pending": "Referral submitted for {referee}. Awaiting admin approval.",
         "referral_duplicate": "This user has already been referred or is a duplicate.",
         "referral_notification": "New referral submission:\nReferrer ID: {referrer_id}\nReferee ID: {referee_id}\nReferee Username: {referee_name}\nTime: {time}",
         "referral_approved": "Your referral for {referee} has been approved!",
         "referral_rejected": "Your referral for {referee} has been rejected.",
         "kyc_pending": "KYC verification pending.",
-        "tasks": "Tasks:\n1. Follow @MomoCoin\n2. Retweet pinned post",
+        "tasks": "Tasks:\n1. Follow @BirdzCoin\n2. Retweet pinned post",
         "daily_tasks": "*Daily Tasks*\nComplete these tasks and submit your username as proof:\n\n{daily_tasks}\n\n*Submission Format*: Enter task ID and username (e.g., '1 @username')",
-        "claim": "Claim your {amount} Momo Coins!",
-        "balance": "Your Momo Coin balance: {balance}",
+        "claim": "Claim your {amount} Birdz Coins!",
+        "balance": "Your Birdz Coin balance: {balance}",
         "task_completed": "Task '{task_description}' submitted! Awaiting admin approval.",
-        "task_approved": "Task '{task_description}' approved! +10 Momo Coins",
+        "task_approved": "Task '{task_description}' approved! +10 Birdz Coins",
         "task_rejected": "Task '{task_description}' rejected.",
         "join_airdrop": "Join the airdrop below (mandatory: Join Telegram, Subscribe Telegram Channel, KYC):",
         "eligibility": "Eligibility: {status}",
-        "leaderboard": "Leaderboard (Top Momo Coin Earners):\n{leaders}",
+        "leaderboard": "Leaderboard (Top Birdz Coin Earners):\n{leaders}",
         "mandatory_missing": "Complete mandatory tasks (Join Telegram, Subscribe Telegram Channel) and KYC to join airdrop.",
         "campaign_set": "Campaign '{name}' set! Start: {start}, End: {end}, Tokens: {tokens}",
         "campaign_edit": "Campaign '{name}' updated! Start: {start}, End: {end}, Tokens: {tokens}",
@@ -205,19 +205,39 @@ class BotContext:
     async def send_message(self, chat_id: str, text: str, reply_markup=None):
         try:
             if self.platform == "telegram":
-                # Add rate limiting for Telegram
-                await asyncio.sleep(0.1)  # Small delay to avoid rate limits
-                await self.bot.send_message(chat_id=chat_id, text=text, reply_markup=reply_markup, parse_mode='Markdown')
+                # Get formatting arguments, default to empty dict if not set
+                format_args = self.user_data.get("format_args", {})
+                # Log the raw text and args for debugging
+                logger.debug(f"Raw text before formatting: {text}")
+                logger.debug(f"Format args: {format_args}")
+                # Apply formatting if placeholders exist
+                if any(placeholder in text for placeholder in ["{balance}", "{ref_link}", "{"]):
+                    formatted_text = text.format(**format_args)
+                else:
+                    formatted_text = text
+                # Log the formatted text before escaping
+                logger.debug(f"Formatted text: {formatted_text}")
+                # Escape MarkdownV2 special characters
+                escaped_text = re.sub(r'([_*[\]()~`>#+\-=|{}.!])', r'\\\1', formatted_text)
+                # Log the final escaped text
+                logger.debug(f"Escaped text for Telegram: {escaped_text}")
+                await asyncio.sleep(0.5)  # Rate limit compliance
+                await self.bot.send_message(
+                    chat_id=chat_id,
+                    text=escaped_text,
+                    reply_markup=reply_markup,
+                    parse_mode='MarkdownV2'
+                )
             elif self.platform == "discord":
                 channel = self.bot.get_channel(int(chat_id)) if chat_id.isdigit() else await self.bot.fetch_user(int(chat_id))
-                if not channel and isinstance(channel, discord.User):
+                if not channel:
                     logger.error(f"Cannot find channel or user for chat_id: {chat_id}")
                     raise Exception(f"Invalid chat_id: {chat_id}")
                 if reply_markup:
                     text += "\n\nOptions:\n" + "\n".join([f"- {btn[0].text} (!Birdz {btn[0].callback_data})" for btn in reply_markup.inline_keyboard])
-                # Add rate limiting for Discord
-                await asyncio.sleep(0.1)  # Small delay to avoid rate limits
-                await (channel.send(text) if isinstance(channel, discord.abc.Messageable) else channel.send(text))
+                await asyncio.sleep(0.5)  # Rate limit compliance
+                await channel.send(text)
+            logger.info(f"Message sent to {chat_id} on {self.platform}: {text[:50]}...")
         except Exception as e:
             logger.error(f"Error in send_message (platform: {self.platform}, chat_id: {chat_id}): {str(e)}")
             raise
@@ -243,12 +263,12 @@ def get_user_language(user_id: str) -> str:
     return result[0] if result and result[0] in LANGUAGES else "en"
 
 def get_user_balance(user_id: str) -> float:
-    cursor.execute("SELECT momo_balance FROM users WHERE user_id = ?", (user_id,))
+    cursor.execute("SELECT Birdz_balance FROM users WHERE user_id = ?", (user_id,))
     result = cursor.fetchone()
     return result[0] if result else 0.0
 
 def update_user_balance(user_id: str, amount: float):
-    cursor.execute("UPDATE users SET momo_balance = momo_balance + ? WHERE user_id = ?", (amount, user_id))
+    cursor.execute("UPDATE users SET Birdz_balance = Birdz_balance + ? WHERE user_id = ?", (amount, user_id))
     conn.commit()
 
 def is_valid_telegram_link(link: str) -> bool:
@@ -299,8 +319,8 @@ def has_joined_groups(user_id: str) -> bool:
     return result[0] == 1 if result else False
 
 def get_leaderboard(lang: str) -> str:
-    cursor.execute("SELECT username, momo_balance FROM users ORDER BY momo_balance DESC LIMIT 10")
-    leaders = [f"{i+1}. {row[0]} - {row[1]} Momo Coins" for i, row in enumerate(cursor.fetchall())]
+    cursor.execute("SELECT username, Birdz_balance FROM users ORDER BY Birdz_balance DESC LIMIT 10")
+    leaders = [f"{i+1}. {row[0]} - {row[1]} Birdz Coins" for i, row in enumerate(cursor.fetchall())]
     return LANGUAGES[lang]["leaderboard"].format(leaders="\n".join(leaders) if leaders else "No leaders yet.")
 
 async def check_eligibility(wallet: str, chain: str) -> tuple[int, float]:
@@ -384,7 +404,7 @@ class AirdropBot:
 
         referral_code = generate_referral_code(user_id)
         cursor.execute("INSERT OR IGNORE INTO users (user_id, username, language, referral_code, kyc_status, agreed_terms, has_seen_menu, joined_groups) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                       (user_id, user_name, lang, referral_code, "pending", 0, 0, 0))
+                    (user_id, user_name, lang, referral_code, "pending", 0, 0, 0))
         conn.commit()
 
         args = update.message.text.split() if context.platform == "telegram" else update.content.split()
@@ -398,7 +418,7 @@ class AirdropBot:
                     await context.send_message(chat_id, LANGUAGES[lang]["referral_duplicate"])
                 else:
                     cursor.execute("INSERT OR IGNORE INTO referrals (referrer_id, referee_id, timestamp) VALUES (?, ?, ?)",
-                                   (referrer[0], user_id, datetime.utcnow().isoformat()))
+                                (referrer[0], user_id, datetime.utcnow().isoformat()))
                     cursor.execute("UPDATE users SET referred_by = ? WHERE user_id = ?", (referrer[0], user_id))
                     conn.commit()
                     await context.send_message(referrer[0], LANGUAGES[lang]["referral_pending"].format(referee=user_name))
@@ -413,8 +433,14 @@ class AirdropBot:
             await context.send_message(chat_id, LANGUAGES[lang]["mandatory_rules"], reply_markup)
         else:
             balance = get_user_balance(user_id)
-            reply_markup = get_main_menu(user_id, lang)
-            await context.send_message(chat_id, LANGUAGES[lang]["welcome"].format(balance=balance, ref_link=referral_code), reply_markup)
+            referral_code = generate_referral_code(user_id)
+            main_menu, admin_menu = get_main_menu(user_id, lang)
+            # Set formatting arguments
+            context.user_data["format_args"] = {"balance": balance, "ref_link": referral_code}
+            await context.send_message(chat_id, LANGUAGES[lang]["welcome"], main_menu)
+            if admin_menu:
+                context.user_data["format_args"] = {}  # Clear format_args for admin message
+                await context.send_message(chat_id, "Admin Options:", admin_menu)
         logger.info(f"User {user_name} ({user_id}) started the bot")
 
     async def join_airdrop(self, update: Union[Update, discord.Message], context: BotContext):
@@ -599,16 +625,16 @@ class AirdropBot:
             keyboard = [[InlineKeyboardButton("Back to Menu", callback_data="start")]]
             reply_markup = InlineKeyboardMarkup(keyboard)
             if not distribution:
-                await context.send_message(chat_id, "No claimable Momo Coins found.", reply_markup)
+                await context.send_message(chat_id, "No claimable Birdz Coins found.", reply_markup)
             else:
                 amount, vesting_end = distribution
                 if datetime.utcnow() < datetime.fromisoformat(vesting_end):
-                    await context.send_message(chat_id, f"Momo Coins are locked until {vesting_end}.", reply_markup)
+                    await context.send_message(chat_id, f"Birdz Coins are locked until {vesting_end}.", reply_markup)
                 else:
                     cursor.execute("UPDATE distributions SET status = 'claimed' WHERE user_id = ?", (user_id,))
                     update_user_balance(user_id, amount)
                     conn.commit()
-                    await context.send_message(chat_id, f"Successfully claimed {amount} Momo Coins! Check balance.", reply_markup)
+                    await context.send_message(chat_id, f"Successfully claimed {amount} Birdz Coins! Check balance.", reply_markup)
 
         elif data == "leaderboard":
             leaderboard_text = get_leaderboard(lang)
@@ -1358,53 +1384,25 @@ async def on_message(message: discord.Message):
 airdrop_bot = AirdropBot()
 
 async def main():
-    telegram_task = None
-    try:
-        # Setup and start Telegram bot as a task
-        telegram_task = asyncio.create_task(setup_telegram(airdrop_bot))
-        logger.info("Telegram setup task created")
-    except Exception as e:
-        logger.error(f"Failed to setup Telegram bot: {str(e)}")
-
+    # Setup and start Telegram bot as a task
+    telegram_task = asyncio.create_task(setup_telegram(airdrop_bot))
+    
     # Start Discord bot in the main loop
-    try:
-        await discord_bot.start(DISCORD_TOKEN)
-    except Exception as e:
-        logger.error(f"Failed to start Discord bot: {str(e)}")
-        raise
+    await discord_bot.start(DISCORD_TOKEN)
 
-    # Wait for Telegram task to complete (if it was created)
-    if telegram_task:
-        try:
-            await telegram_task
-        except Exception as e:
-            logger.error(f"Telegram task failed: {str(e)}")
+    # Wait for Telegram task to complete (it won't, unless there's an error)
+    await telegram_task
 
 if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
         logger.info("Bot stopped by user")
-    except Exception as e:
-        logger.error(f"Bot crashed: {str(e)}")
     finally:
         # Ensure proper shutdown
-        loop = asyncio.get_event_loop()
         if airdrop_bot.telegram_app:
-            try:
-                if airdrop_bot.telegram_app.running:
-                    loop.run_until_complete(airdrop_bot.telegram_app.stop())
-                    logger.info("Telegram app stopped")
-                loop.run_until_complete(airdrop_bot.telegram_app.shutdown())
-                logger.info("Telegram app shutdown")
-            except Exception as e:
-                logger.error(f"Error during Telegram shutdown: {str(e)}")
+            asyncio.run(airdrop_bot.telegram_app.stop())
+            asyncio.run(airdrop_bot.telegram_app.shutdown())
         if airdrop_bot.discord_bot:
-            try:
-                if discord_bot.is_ready():
-                    loop.run_until_complete(discord_bot.close())
-                    logger.info("Discord bot closed")
-            except Exception as e:
-                logger.error(f"Error closing Discord bot: {str(e)}")
+            asyncio.run(discord_bot.close())
         conn.close()
-        logger.info("Database connection closed")
